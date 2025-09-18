@@ -137,4 +137,3 @@ npm run lint
   ionic build && npx cap sync
   ```
 - For SPA routing on static hosts, ensure fallback to `index.html`.
-```
