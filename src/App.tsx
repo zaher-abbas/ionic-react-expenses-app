@@ -46,7 +46,6 @@ const App: React.FC = () => (
                 <Redirect to="/home" />
             </Route>
         </IonRouterOutlet>
-
     </IonReactRouter>
   </IonApp>
 );

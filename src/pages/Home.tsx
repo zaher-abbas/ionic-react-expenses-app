@@ -34,14 +34,12 @@ const Home: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
           <IonGrid>
-              {/* Header row */}
               <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
                   <IonCol size="3">Title</IonCol>
                   <IonCol size="3">Amount</IonCol>
                   <IonCol size="3">Category</IonCol>
                   <IonCol size="3">Date</IonCol>
               </IonRow>
-              {/* Data rows */}
               {expenses.map((expense) => (
                   <IonRow key={expense.id} className="ion-text-center ion-padding-vertical">
                       <IonCol size="3">{expense.title}</IonCol>
