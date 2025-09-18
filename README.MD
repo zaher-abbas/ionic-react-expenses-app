@@ -138,7 +138,4 @@ npm run lint
   ```
 - For SPA routing on static hosts, ensure fallback to `index.html`.
 
-## License
-
-Add your license information here (e.g., MIT).
 ```
