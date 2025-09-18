@@ -64,8 +64,7 @@ const Home: React.FC = () => {
                   </IonRow>
               ))}
           </IonGrid>
-
-          <IonFab slot="fixed" vertical="bottom" horizontal="end">
+          <IonFab slot="fixed" vertical="bottom" horizontal="center">
               <IonFabButton aria-label="Add" routerLink="/add">
                   <IonIcon icon={add} />
               </IonFabButton>
