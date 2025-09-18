@@ -1,6 +1,6 @@
 import {Preferences} from "@capacitor/preferences";
 
-const STORAGE_KEY = 'expenses:v3';
+const STORAGE_KEY = 'expenses:v4';
 
 export type Expense = {
     id: string,

@@ -16,7 +16,7 @@ import {useHistory} from "react-router-dom";
 
 const AddExpense: React.FC = () => {
     const history = useHistory();
-    const CATEGORIES = ['food', 'transportation', 'entertainment', 'health', 'education', 'other'];
+    const CATEGORIES: string[] = ['Food', 'Transportation', 'Entertainment', 'Health', 'Education', 'Other'];
     const [title, setTitle] = useState<string>('');
     const [amount, setAmount] = useState<number>(0.1);
     const [dateISO, setDateISO] = useState<string>(new Date().toISOString().slice(0, 10));
@@ -27,12 +27,12 @@ const AddExpense: React.FC = () => {
         e.preventDefault();
 
         const addedExpense: Expense = {
-            id: crypto.randomUUID(),        // or `${Date.now()}`
+            id: crypto.randomUUID(),
             title: title.trim(),
-            amount: amount,         // ensure it's a number
-            dateISO: dateISO,                        // e.g., "2025-09-18" (YYYY-MM-DD)
+            amount: amount,
+            dateISO: dateISO,                // e.g., "2025-09-18" (YYYY-MM-DD)
             createdAt: Date.now(),          // current timestamp
-            category,                       // e.g., "food"
+            category,
         };
         const expenses = await getExpenses();
         const nexExpenses = [addedExpense, ...expenses];
@@ -90,7 +90,7 @@ return (
                                     >
                                         {CATEGORIES.map((c) => (
                                             <IonSelectOption key={c} value={c}>
-                                                {c ? c.charAt(0).toUpperCase() + c.slice(1) : '(Unknown)'}
+                                                {c}
                                             </IonSelectOption>
                                         ))}
                                     </IonSelect>
