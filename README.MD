@@ -32,7 +32,6 @@ A simple cross‑platform expense tracking application built with Ionic React, T
 
 From the project root:
 ```
-cd app
 npm install
 ```
 ## Run (Browser)
