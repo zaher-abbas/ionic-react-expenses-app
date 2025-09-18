@@ -1,6 +1,7 @@
 # Expenses App
 
-A simple cross‑platform expense tracking application built with Ionic React, TypeScript, Vite, and Capacitor. Add expenses with title, amount, category, and date, and view them in a clean, mobile‑friendly interface.
+A simple cross‑platform expense tracking application built with Ionic React, TypeScript, Vite, and Capacitor.<br>
+Add expenses with title, amount, category, and date, and view them in a clean, mobile‑friendly interface.
 
 ## Features
 
