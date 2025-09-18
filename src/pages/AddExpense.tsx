@@ -18,7 +18,7 @@ const AddExpense: React.FC = () => {
     const history = useHistory();
     const CATEGORIES = ['food', 'transportation', 'entertainment', 'health', 'education', 'other'];
     const [title, setTitle] = useState<string>('');
-    const [amount, setAmount] = useState<number>(0.01);
+    const [amount, setAmount] = useState<number>(0.1);
     const [dateISO, setDateISO] = useState<string>(new Date().toISOString().slice(0, 10));
     const [category, setCategory] = useState<string>('');
 
@@ -69,12 +69,11 @@ return (
                                 <IonItem>
                                     <IonLabel position="stacked">Amount</IonLabel>
                                     <IonInput
-                                        inputmode="decimal"
                                         type="number"
-                                        step="0.01"
-                                        min="0.01"
+                                        step="0.1"
+                                        min="0.1"
                                         value={amount}
-                                        onIonChange={(e) => setAmount(e.detail.value || '')}
+                                        onIonChange={(e) => setAmount(e.detail.value ? parseFloat(e.detail.value) : 0.01)}
                                         required
                                         placeholder="e.g. 25.50"
                                     />

@@ -1,4 +1,5 @@
 import {
+    IonCard, IonCardContent, IonCardHeader, IonCardTitle,
     IonCol,
     IonContent,
     IonFab,
@@ -15,12 +16,18 @@ import {useEffect, useState} from "react";
 import {Expense, getExpenses} from "../data/Storage";
 
 const Home: React.FC = () => {
-    const [expenses, setExpenses] = useState<Expense[]>([]);
-
+     const [expenses, setExpenses] = useState<Expense[]>([]);
+     const [total, setTotal] = useState<number>(0);
     useEffect(() => {
         const fetchExpenses = async () => {
             const expenses = await getExpenses();
             setExpenses(expenses);
+            let totalAmount: number = 0;
+            expenses.forEach(expense => {
+                const expenseAmount: number = parseFloat(expense.amount.toString());
+                totalAmount += expenseAmount;
+            })
+            setTotal(totalAmount);
         };
         fetchExpenses();
     }, [location.pathname]
@@ -33,6 +40,14 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+          <IonCard className="ion-margin-top ion-text-center">
+          <IonCardHeader>
+              <IonCardTitle>Total Expenses</IonCardTitle>
+          </IonCardHeader>
+              <IonCardContent>
+                  {total}
+              </IonCardContent>
+          </IonCard>
           <IonGrid>
               <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
                   <IonCol size="3">Title</IonCol>
