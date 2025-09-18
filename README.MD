@@ -32,7 +32,6 @@ A simple cross‑platform expense tracking application built with Ionic React, T
 
 From the project root:
 ```
-bash
 cd app
 npm install
 ```
@@ -40,7 +39,6 @@ npm install
 
 Use the Ionic CLI to serve the app locally:
 ```
-bash
 ionic serve
 ```
 The app will be available at:
@@ -51,7 +49,7 @@ This command also watches for changes and live‑reloads the app.
 ## Build
 
 - Development/production web assets (via Ionic CLI):
-  ```bash
+  ```
   ionic build
   ```
   Outputs to `app/dist`.
