@@ -107,11 +107,21 @@ return (
                                 </IonItem>
 
                             </IonList>
-                            <div style={{padding: 16}}>
-                                <IonButton expand="block" type="submit">
-                                    Save
-                                </IonButton>
-                            </div>
+                            <IonGrid>
+                                <IonRow>
+                                    <IonCol size="6">
+                                        <IonButton color="success" expand="block" type="submit">
+                                            Add
+                                        </IonButton>
+                                    </IonCol>
+                                    <IonCol size="6">
+                                        <IonButton color="danger" expand="block" type="button" routerLink="/home">
+                                            Cancel
+                                        </IonButton>
+                                    </IonCol>
+                                </IonRow>
+
+                            </IonGrid>
                         </form>
                     </IonCol>
                 </IonRow>

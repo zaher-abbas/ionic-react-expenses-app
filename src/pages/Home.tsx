@@ -1,4 +1,5 @@
 import {
+    IonButton,
     IonCard, IonCardContent, IonCardHeader, IonCardTitle,
     IonCol,
     IonContent,
@@ -11,13 +12,14 @@ import {
     IonToolbar
 } from '@ionic/react';
 import './Home.css';
-import {add} from "ionicons/icons";
+import {add, arrowDown, arrowUp} from "ionicons/icons";
 import {useEffect, useState} from "react";
 import {Expense, getExpenses} from "../data/Storage";
 
 const Home: React.FC = () => {
      const [expenses, setExpenses] = useState<Expense[]>([]);
      const [total, setTotal] = useState<number>(0);
+     const [sortedAscendent, setSortedAscendent] = useState<boolean>(false);
     useEffect(() => {
         const fetchExpenses = async () => {
             const expenses = await getExpenses();
@@ -32,7 +34,17 @@ const Home: React.FC = () => {
         fetchExpenses();
     }, [location.pathname]
     );
-  return (
+
+    function sortByCategory() {
+        setSortedAscendent(!sortedAscendent);
+        if (sortedAscendent) {
+            return expenses.sort((a, b) => b.category.localeCompare(a.category));
+        }
+        else
+        setExpenses(prev => [...expenses].sort((a, b) => a.category.localeCompare(b.category)));
+    }
+
+    return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
@@ -52,7 +64,17 @@ const Home: React.FC = () => {
               <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
                   <IonCol size="3">Title</IonCol>
                   <IonCol size="3">Amount</IonCol>
-                  <IonCol size="3">Category</IonCol>
+                  <IonCol size="3" className="header-with-icon">
+                      <span>Category</span>
+                      <IonButton
+                          fill="clear"
+                          size="small"
+                          aria-label="Sort by category"
+                          onClick={sortByCategory}
+                      >
+                          <IonIcon icon={sortedAscendent ? arrowDown : arrowUp} />
+                      </IonButton>
+                  </IonCol>
                   <IonCol size="3">Date</IonCol>
               </IonRow>
               {expenses.map((expense) => (
