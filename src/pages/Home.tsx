@@ -12,10 +12,12 @@ import {
     IonToolbar
 } from '@ionic/react';
 import './Home.css';
-import {add, arrowDown, arrowUp, logoLinkedin, moon, sunny} from "ionicons/icons";
+import {add, arrowDown, arrowUp, logoLinkedin, moon, remove, sunny} from "ionicons/icons";
 import {useEffect, useState} from "react";
-import {Expense, getExpenses} from "../data/Storage";
+import {Expense, getExpenses, saveExpenses} from "../data/Storage";
 import {DarkMode} from "../hooks/useDarkMode";
+
+
 
 const Home: React.FC = () => {
      const {isDark, toggleDarkMode} = DarkMode();
@@ -38,6 +40,14 @@ const Home: React.FC = () => {
         fetchExpenses();
     }, [location.pathname]
     );
+
+    async function deleteExpense(index: number) {
+        const newExpenses = [...expenses].slice();
+        newExpenses.splice(index, 1);
+        setExpenses(newExpenses);
+        await saveExpenses(newExpenses);
+
+    }
 
     function sortByCategory() {
         setCatSortedAscendent(!sortedCatAscendent);
@@ -88,7 +98,9 @@ const Home: React.FC = () => {
           </IonGrid>
           <IonGrid>
               <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
-                  <IonCol size="3" className="header-with-icon">
+                  <IonCol size="2">
+                  </IonCol>
+                  <IonCol size="2" className="header-with-icon">
                       <span>Title</span>
                       <IonButton
                           fill="clear"
@@ -99,8 +111,8 @@ const Home: React.FC = () => {
                           <IonIcon icon={sortedTitleAscendent ? arrowDown : arrowUp}/>
                       </IonButton>
                   </IonCol>
-                  <IonCol size="3">Amount</IonCol>
-                  <IonCol size="3" className="header-with-icon">
+                  <IonCol size="2">Amount</IonCol>
+                  <IonCol size="2" className="header-with-icon">
                       <span>Category</span>
                       <IonButton
                           fill="clear"
@@ -111,14 +123,23 @@ const Home: React.FC = () => {
                           <IonIcon icon={sortedCatAscendent ? arrowDown : arrowUp} />
                       </IonButton>
                   </IonCol>
-                  <IonCol size="3">Date</IonCol>
+                  <IonCol size="2">Date</IonCol>
               </IonRow>
               {expenses.map((expense) => (
                   <IonRow key={expense.id} className="ion-text-center ion-padding-vertical">
-                      <IonCol size="3">{expense.title}</IonCol>
-                      <IonCol size="3">{expense.amount}</IonCol>
-                      <IonCol size="3">{expense.category}</IonCol>
-                      <IonCol size="3">{expense.dateISO}</IonCol>
+                      <IonCol size="2">
+                           <IonButton
+                          color="danger"
+                          size="small"
+                          aria-label="Delete Expense"
+                          onClick={() => deleteExpense(expenses.indexOf(expense))}
+                      ><IonIcon icon={remove}></IonIcon>
+                           </IonButton>
+                      </IonCol>
+                      <IonCol size="2">{expense.title}</IonCol>
+                      <IonCol size="2">{expense.amount}</IonCol>
+                      <IonCol size="2">{expense.category}</IonCol>
+                      <IonCol size="2">{expense.dateISO}</IonCol>
                   </IonRow>
               ))}
           </IonGrid>
