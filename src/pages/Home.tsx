@@ -42,7 +42,7 @@ const Home: React.FC = () => {
     );
 
     async function deleteExpense(index: number) {
-        const newExpenses = [...expenses].slice();
+        const newExpenses = [...expenses];
         newExpenses.splice(index, 1);
         setExpenses(newExpenses);
         await saveExpenses(newExpenses);
