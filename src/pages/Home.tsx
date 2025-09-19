@@ -6,7 +6,7 @@ import {
     IonFab,
     IonFabButton, IonFooter, IonGrid,
     IonHeader,
-    IonIcon,
+    IonIcon, IonModal,
     IonPage, IonRow,
     IonTitle,
     IonToolbar
@@ -25,6 +25,8 @@ const Home: React.FC = () => {
      const [total, setTotal] = useState<number>(0);
      const [sortedCatAscendent, setCatSortedAscendent] = useState<boolean>(false);
      const [sortedTitleAscendent, setSortedTitleAscendant] = useState<boolean>(false);
+     const [expensesIndex, setExpensesIndex] = useState<number>(0);
+    const [confirmOpen, setConfirmOpen] = useState(false);
 
     useEffect(() => {
         const fetchExpenses = async () => {
@@ -41,13 +43,6 @@ const Home: React.FC = () => {
     }, [location.pathname]
     );
 
-    async function deleteExpense(index: number) {
-        const newExpenses = [...expenses];
-        newExpenses.splice(index, 1);
-        setExpenses(newExpenses);
-        await saveExpenses(newExpenses);
-
-    }
 
     function sortByCategory() {
         setCatSortedAscendent(!sortedCatAscendent);
@@ -66,6 +61,21 @@ const Home: React.FC = () => {
         else
             setExpenses(prev => [...expenses].sort((a, b) => a.title.localeCompare(b.title)));
     }
+
+    async function deleteExpense() {
+        const newExpenses = [...expenses];
+        newExpenses.splice(expensesIndex, 1);
+        setExpenses(newExpenses);
+        await saveExpenses(newExpenses);
+        setConfirmOpen(false);
+
+    }
+
+    function cancelDelete() {
+        setConfirmOpen(false);
+        setConfirmOpen(false);
+    }
+
     return (
     <IonPage>
       <IonHeader>
@@ -132,7 +142,10 @@ const Home: React.FC = () => {
                           color="danger"
                           size="small"
                           aria-label="Delete Expense"
-                          onClick={() => deleteExpense(expenses.indexOf(expense))}
+                          onClick={() => {
+                              setExpensesIndex(expenses.indexOf(expense))
+                              setConfirmOpen(true)
+                          }}
                       ><IonIcon icon={remove}></IonIcon>
                            </IonButton>
                       </IonCol>
@@ -165,7 +178,19 @@ const Home: React.FC = () => {
                 </IonTitle>
             </IonToolbar>
         </IonFooter>
+        <IonModal isOpen={confirmOpen} onDidDismiss={cancelDelete}>
+            <div style={{ padding: 16 }}>
+                <h2>Delete expense?</h2>
+                <p>This action cannot be undone.</p>
+                <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                    <IonButton onClick={cancelDelete} color="medium">Cancel</IonButton>
+                    <IonButton onClick={deleteExpense} color="danger">Delete</IonButton>
+                </div>
+            </div>
+        </IonModal>
+
     </IonPage>
+
   );
 };
 
