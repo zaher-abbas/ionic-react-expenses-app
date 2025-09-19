@@ -4,7 +4,7 @@ import {
     IonCol,
     IonContent,
     IonFab,
-    IonFabButton, IonGrid,
+    IonFabButton, IonFooter, IonGrid,
     IonHeader,
     IonIcon,
     IonPage, IonRow,
@@ -12,7 +12,7 @@ import {
     IonToolbar
 } from '@ionic/react';
 import './Home.css';
-import {add, arrowDown, arrowUp} from "ionicons/icons";
+import {add, arrowDown, arrowUp, logoLinkedin} from "ionicons/icons";
 import {useEffect, useState} from "react";
 import {Expense, getExpenses} from "../data/Storage";
 
@@ -112,6 +112,23 @@ const Home: React.FC = () => {
               </IonFabButton>
           </IonFab>
       </IonContent>
+        <IonFooter>
+            <IonToolbar className="ion-text-center">
+                <IonTitle size="small">
+                    © {new Date().getFullYear()} Developed by Zaher ABBAS ·{" "}
+                    <a
+                        href="https://www.linkedin.com/in/z83/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: 'none' }}
+                        aria-label="LinkedIn profile"
+                    >
+                        <IonIcon icon={logoLinkedin} style={{ verticalAlign: 'middle', marginRight: 6 }} />
+                        LinkedIn
+                    </a>
+                </IonTitle>
+            </IonToolbar>
+        </IonFooter>
     </IonPage>
   );
 };
