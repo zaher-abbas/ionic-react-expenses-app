@@ -1,5 +1,5 @@
 import {
-    IonButton,
+    IonButton, IonButtons,
     IonCard, IonCardContent, IonCardHeader, IonCardTitle,
     IonCol,
     IonContent,
@@ -12,11 +12,13 @@ import {
     IonToolbar
 } from '@ionic/react';
 import './Home.css';
-import {add, arrowDown, arrowUp, logoLinkedin} from "ionicons/icons";
+import {add, arrowDown, arrowUp, logoLinkedin, moon, sunny} from "ionicons/icons";
 import {useEffect, useState} from "react";
 import {Expense, getExpenses} from "../data/Storage";
+import {DarkMode} from "../hooks/useDarkMode";
 
 const Home: React.FC = () => {
+     const {isDark, toggleDarkMode} = DarkMode();
      const [expenses, setExpenses] = useState<Expense[]>([]);
      const [total, setTotal] = useState<number>(0);
      const [sortedCatAscendent, setCatSortedAscendent] = useState<boolean>(false);
@@ -59,6 +61,14 @@ const Home: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle><IonIcon></IonIcon>💸 Expenses - App</IonTitle>
+          <IonButtons slot="end">
+              <IonButton
+                  onClick={toggleDarkMode}
+                  aria-label={isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre'}
+              >
+                  <IonIcon slot="icon-only" icon={isDark ? sunny : moon} />
+              </IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>

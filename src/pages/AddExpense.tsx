@@ -1,7 +1,7 @@
 import {
-    IonButton, IonCol,
+    IonButton, IonButtons, IonCol,
     IonContent, IonGrid,
-    IonHeader,
+    IonHeader, IonIcon,
     IonInput,
     IonItem,
     IonLabel,
@@ -13,8 +13,11 @@ import {
 import React, { useState } from 'react';
 import { Expense, getExpenses, saveExpenses } from '../data/Storage';
 import {useHistory} from "react-router-dom";
+import {moon, sunny} from "ionicons/icons";
+import {DarkMode} from "../hooks/useDarkMode";
 
 const AddExpense: React.FC = () => {
+    const {isDark, toggleDarkMode} = DarkMode();
     const history = useHistory();
     const CATEGORIES: string[] = ['Food', 'Transportation', 'Entertainment', 'Health', 'Education', 'Other'];
     const [title, setTitle] = useState<string>('');
@@ -47,11 +50,19 @@ const AddExpense: React.FC = () => {
 
     }
 
-return (
+    return (
     <IonPage>
         <IonHeader>
             <IonToolbar>
                 <IonTitle>Add Expense</IonTitle>
+                <IonButtons slot="end">
+                    <IonButton
+                        onClick={toggleDarkMode}
+                        aria-label={isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre'}
+                    >
+                        <IonIcon slot="icon-only" icon={isDark ? sunny : moon} />
+                    </IonButton>
+                    </IonButtons>
             </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
