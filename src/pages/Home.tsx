@@ -80,7 +80,7 @@ const Home: React.FC = () => {
                               <IonCardTitle>💰 Total Expenses</IonCardTitle>
                           </IonCardHeader>
                           <IonCardContent>
-                              {total}
+                              {total.toFixed(2)}
                           </IonCardContent>
                       </IonCard>
                   </IonCol>
