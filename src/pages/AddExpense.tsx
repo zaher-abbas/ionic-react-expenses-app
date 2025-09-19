@@ -54,7 +54,7 @@ const AddExpense: React.FC = () => {
     <IonPage>
         <IonHeader>
             <IonToolbar>
-                <IonTitle>Add Expense</IonTitle>
+                <IonTitle>💸 Add Expense</IonTitle>
                 <IonButtons slot="end">
                     <IonButton
                         onClick={toggleDarkMode}
