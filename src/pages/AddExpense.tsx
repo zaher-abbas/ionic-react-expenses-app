@@ -112,7 +112,6 @@ return (
                                         placeholder="e.g. 2025-09-18"
                                     />
                                 </IonItem>
-
                             </IonList>
                             <IonGrid>
                                 <IonRow>
