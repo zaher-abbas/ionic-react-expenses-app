@@ -6,6 +6,8 @@ Add expenses with title, amount, category, and date, and view them in a clean, m
 ## Features
 
 - Add and list expenses (title, amount, category, date)
+- Sort expenses by category or by title
+- Delete an expense from the list
 - Responsive, mobile‑first UI with Ionic components
 - Client‑side data persistence (via Preferences local storage)
 - Runs in the browser and can be deployed to iOS/Android with Capacitor
