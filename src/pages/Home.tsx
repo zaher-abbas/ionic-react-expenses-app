@@ -75,7 +75,7 @@ const Home: React.FC = () => {
         setConfirmOpen(false);
     }
 
-    function formaEuro(n: number) {
+    function formatEuro(n: number) {
         return new Intl.NumberFormat('fr-FR', {style: 'currency', currency: 'EUR'}).format(n);
     }
 
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
                               <IonCardTitle>💰 Total Expenses</IonCardTitle>
                           </IonCardHeader>
                           <IonCardContent style={{fontWeight: 700, fontSize: '2rem'}}>
-                              {formaEuro(total)}
+                              {formatEuro(total)}
                           </IonCardContent>
                       </IonCard>
                   </IonCol>
@@ -153,7 +153,7 @@ const Home: React.FC = () => {
                            </IonButton>
                       </IonCol>
                       <IonCol >{expense.title}</IonCol>
-                      <IonCol >{formaEuro(expense.amount)}</IonCol>
+                      <IonCol >{formatEuro(expense.amount)}</IonCol>
                       <IonCol >{expense.category}</IonCol>
                       <IonCol >{expense.dateISO}</IonCol>
                   </IonRow>
