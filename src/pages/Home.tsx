@@ -19,7 +19,9 @@ import {Expense, getExpenses} from "../data/Storage";
 const Home: React.FC = () => {
      const [expenses, setExpenses] = useState<Expense[]>([]);
      const [total, setTotal] = useState<number>(0);
-     const [sortedAscendent, setSortedAscendent] = useState<boolean>(false);
+     const [sortedCatAscendent, setCatSortedAscendent] = useState<boolean>(false);
+     const [sortedTitleAscendent, setSortedTitleAscendant] = useState<boolean>(false);
+
     useEffect(() => {
         const fetchExpenses = async () => {
             const expenses = await getExpenses();
@@ -36,14 +38,22 @@ const Home: React.FC = () => {
     );
 
     function sortByCategory() {
-        setSortedAscendent(!sortedAscendent);
-        if (sortedAscendent) {
+        setCatSortedAscendent(!sortedCatAscendent);
+        if (sortedCatAscendent) {
             return expenses.sort((a, b) => b.category.localeCompare(a.category));
         }
         else
         setExpenses(prev => [...expenses].sort((a, b) => a.category.localeCompare(b.category)));
     }
 
+    function sortByName() {
+        setSortedTitleAscendant(!sortedTitleAscendent);
+        if (sortedTitleAscendent) {
+            return expenses.sort((a, b) => b.title.localeCompare(a.title));
+        }
+        else
+            setExpenses(prev => [...expenses].sort((a, b) => a.title.localeCompare(b.title)));
+    }
     return (
     <IonPage>
       <IonHeader>
@@ -62,7 +72,17 @@ const Home: React.FC = () => {
           </IonCard>
           <IonGrid>
               <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
-                  <IonCol size="3">Title</IonCol>
+                  <IonCol size="3" className="header-with-icon">
+                      <span>Title</span>
+                      <IonButton
+                          fill="clear"
+                          size="small"
+                          aria-label="Sort by Title"
+                          onClick={sortByName}
+                      >
+                          <IonIcon icon={sortedTitleAscendent ? arrowDown : arrowUp}/>
+                      </IonButton>
+                  </IonCol>
                   <IonCol size="3">Amount</IonCol>
                   <IonCol size="3" className="header-with-icon">
                       <span>Category</span>
@@ -72,7 +92,7 @@ const Home: React.FC = () => {
                           aria-label="Sort by category"
                           onClick={sortByCategory}
                       >
-                          <IonIcon icon={sortedAscendent ? arrowDown : arrowUp} />
+                          <IonIcon icon={sortedCatAscendent ? arrowDown : arrowUp} />
                       </IonButton>
                   </IonCol>
                   <IonCol size="3">Date</IonCol>
