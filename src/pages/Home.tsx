@@ -43,7 +43,6 @@ const Home: React.FC = () => {
     }, [location.pathname]
     );
 
-
     function sortByCategory() {
         setCatSortedAscendent(!sortedCatAscendent);
         if (sortedCatAscendent) {
@@ -76,6 +75,10 @@ const Home: React.FC = () => {
         setConfirmOpen(false);
     }
 
+    function formaEuro(n: number) {
+        return new Intl.NumberFormat('fr-FR', {style: 'currency', currency: 'EUR'}).format(n);
+    }
+
     return (
     <IonPage>
       <IonHeader>
@@ -84,7 +87,7 @@ const Home: React.FC = () => {
           <IonButtons slot="end">
               <IonButton
                   onClick={toggleDarkMode}
-                  aria-label={isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre'}
+                  aria-label={isDark ? 'Deactivate Dark Mode' : 'Activate Dark Mode'}
               >
                   <IonIcon slot="icon-only" icon={isDark ? sunny : moon} />
               </IonButton>
@@ -100,7 +103,7 @@ const Home: React.FC = () => {
                               <IonCardTitle>💰 Total Expenses</IonCardTitle>
                           </IonCardHeader>
                           <IonCardContent style={{fontWeight: 700, fontSize: '2rem'}}>
-                              {total.toFixed(2)}
+                              {formaEuro(total)}
                           </IonCardContent>
                       </IonCard>
                   </IonCol>
@@ -150,7 +153,7 @@ const Home: React.FC = () => {
                            </IonButton>
                       </IonCol>
                       <IonCol >{expense.title}</IonCol>
-                      <IonCol >{expense.amount}</IonCol>
+                      <IonCol >{formaEuro(expense.amount)}</IonCol>
                       <IonCol >{expense.category}</IonCol>
                       <IonCol >{expense.dateISO}</IonCol>
                   </IonRow>
@@ -180,8 +183,8 @@ const Home: React.FC = () => {
         </IonFooter>
         <IonModal isOpen={confirmOpen} onDidDismiss={cancelDelete}>
             <div style={{ padding: 16 }}>
-                <h2>Delete expense?</h2>
-                <p>This action cannot be undone.</p>
+                <h2>Delete this expense?</h2>
+                <p>This action cannot be undone!</p>
                 <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
                     <IonButton onClick={cancelDelete} color="medium">Cancel</IonButton>
                     <IonButton onClick={deleteExpense} color="danger">Delete</IonButton>
