@@ -46,7 +46,7 @@ const Home: React.FC = () => {
         setExpenses(prev => [...expenses].sort((a, b) => a.category.localeCompare(b.category)));
     }
 
-    function sortByName() {
+    function sortByTitle() {
         setSortedTitleAscendant(!sortedTitleAscendent);
         if (sortedTitleAscendent) {
             return expenses.sort((a, b) => b.title.localeCompare(a.title));
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Expenses - App</IonTitle>
+          <IonTitle><IonIcon></IonIcon>💸 Expenses - App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -78,7 +78,7 @@ const Home: React.FC = () => {
                           fill="clear"
                           size="small"
                           aria-label="Sort by Title"
-                          onClick={sortByName}
+                          onClick={sortByTitle}
                       >
                           <IonIcon icon={sortedTitleAscendent ? arrowDown : arrowUp}/>
                       </IonButton>
