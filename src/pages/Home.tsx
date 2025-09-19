@@ -67,7 +67,7 @@ const Home: React.FC = () => {
                   <IonCol sizeSm="12" sizeMd="10" sizeLg="8" sizeXl="6">
                       <IonCard className="ion-margin-top ion-text-center">
                           <IonCardHeader>
-                              <IonCardTitle>Total Expenses</IonCardTitle>
+                              <IonCardTitle>💰 Total Expenses</IonCardTitle>
                           </IonCardHeader>
                           <IonCardContent>
                               {total}
