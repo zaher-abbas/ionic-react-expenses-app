@@ -62,14 +62,20 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-          <IonCard className="ion-margin-top ion-text-center">
-          <IonCardHeader>
-              <IonCardTitle>Total Expenses</IonCardTitle>
-          </IonCardHeader>
-              <IonCardContent>
-                  {total}
-              </IonCardContent>
-          </IonCard>
+          <IonGrid>
+              <IonRow className="ion-justify-content-center">
+                  <IonCol sizeSm="12" sizeMd="10" sizeLg="8" sizeXl="6">
+                      <IonCard className="ion-margin-top ion-text-center">
+                          <IonCardHeader>
+                              <IonCardTitle>Total Expenses</IonCardTitle>
+                          </IonCardHeader>
+                          <IonCardContent>
+                              {total}
+                          </IonCardContent>
+                      </IonCard>
+                  </IonCol>
+              </IonRow>
+          </IonGrid>
           <IonGrid>
               <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
                   <IonCol size="3" className="header-with-icon">
