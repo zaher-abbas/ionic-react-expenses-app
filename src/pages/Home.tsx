@@ -115,7 +115,7 @@ const Home: React.FC = () => {
         <IonFooter>
             <IonToolbar className="ion-text-center">
                 <IonTitle size="small">
-                    © {new Date().getFullYear()} Developed by Zaher ABBAS ·{" "}
+                    © {new Date().getFullYear()} Developed by Zaher ABBAS &nbsp; &nbsp;
                     <a
                         href="https://www.linkedin.com/in/z83/"
                         target="_blank"

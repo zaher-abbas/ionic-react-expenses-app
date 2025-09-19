@@ -5,7 +5,7 @@ import {
     IonInput,
     IonItem,
     IonLabel,
-    IonList,
+    IonList, IonNote,
     IonPage, IonRow, IonSelect, IonSelectOption,
     IonTitle,
     IonToolbar
@@ -21,6 +21,7 @@ const AddExpense: React.FC = () => {
     const [amount, setAmount] = useState<number>(0.1);
     const [dateISO, setDateISO] = useState<string>(new Date().toISOString().slice(0, 10));
     const [category, setCategory] = useState<string>('');
+    const [error, setError] = useState<Boolean>(false);
 
 
     async function submit (e: React.FormEvent) {
@@ -34,6 +35,10 @@ const AddExpense: React.FC = () => {
             createdAt: Date.now(),          // current timestamp
             category,
         };
+        if (!category){
+           setError(true);
+            return;
+        }
         const expenses = await getExpenses();
         const nexExpenses = [addedExpense, ...expenses];
         await saveExpenses(nexExpenses);
@@ -95,6 +100,8 @@ return (
                                         ))}
                                     </IonSelect>
                                 </IonItem>
+                                {error && <IonNote color="danger" className="ion-margin-start">Please select a
+                                    category!</IonNote>}
                                 <IonItem>
                                     <IonLabel position="stacked">Date</IonLabel>
                                     <IonInput
@@ -115,7 +122,9 @@ return (
                                         </IonButton>
                                     </IonCol>
                                     <IonCol size="6">
-                                        <IonButton color="danger" expand="block" type="button" routerLink="/home">
+                                        <IonButton color="danger" expand="block" type="button" onClick={() =>{
+                                            setError(false);
+                                            history.push('/home');}}>
                                             Cancel
                                         </IonButton>
                                     </IonCol>
