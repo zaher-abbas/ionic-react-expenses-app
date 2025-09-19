@@ -99,7 +99,7 @@ const Home: React.FC = () => {
                           <IonCardHeader>
                               <IonCardTitle>💰 Total Expenses</IonCardTitle>
                           </IonCardHeader>
-                          <IonCardContent>
+                          <IonCardContent style={{fontWeight: 700, fontSize: '2rem'}}>
                               {total.toFixed(2)}
                           </IonCardContent>
                       </IonCard>

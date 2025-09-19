@@ -50,7 +50,18 @@ body.dark {
 
     /* Conservez vos couleurs de marque (primary, secondary, etc.) telles quelles,
        ou assombrissez-les légèrement si nécessaire.
-       Exemple (optionnel) : */
+       Exemple (optionnel) : */
     /* --ion-color-primary: #7aa2ff;
        --ion-color-primary-contrast: #0b0b0b; */
+}
+
+/* Use Ionic's --color custom property so text inside Shadow DOM picks it up */
+body.dark ion-card {
+    --color: var(--ion-text-color);
+}
+
+/* These components also read --color */
+body.dark ion-card-title,
+body.dark ion-card-content {
+    --color: var(--ion-text-color);
 }
