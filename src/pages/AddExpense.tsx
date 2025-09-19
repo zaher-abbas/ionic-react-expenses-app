@@ -68,7 +68,7 @@ const AddExpense: React.FC = () => {
         <IonContent fullscreen>
             <IonGrid fixed>
                 <IonRow className="ion-justify-content-center">
-                    <IonCol size="12" sizeMd="8" sizeLg="6" sizeXl="5">
+                    <IonCol size="12" sizeMd="12" sizeLg="10" sizeXl="8">
                         <form onSubmit={submit}>
                             <IonList inset>
                                 <IonItem>
