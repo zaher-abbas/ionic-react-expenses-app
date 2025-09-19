@@ -1,6 +1,6 @@
 import {
     IonButton, IonButtons, IonCol,
-    IonContent, IonGrid,
+    IonContent, IonFooter, IonGrid,
     IonHeader, IonIcon,
     IonInput,
     IonItem,
@@ -13,7 +13,7 @@ import {
 import React, { useState } from 'react';
 import { Expense, getExpenses, saveExpenses } from '../data/Storage';
 import {useHistory} from "react-router-dom";
-import {moon, sunny} from "ionicons/icons";
+import {logoLinkedin, moon, sunny} from "ionicons/icons";
 import {DarkMode} from "../hooks/useDarkMode";
 
 const AddExpense: React.FC = () => {
@@ -146,6 +146,22 @@ const AddExpense: React.FC = () => {
                 </IonRow>
             </IonGrid>
         </IonContent>
+        <IonFooter>
+            <IonToolbar className="ion-text-center">
+                <IonTitle size="small">
+                    © {new Date().getFullYear()} Developed by Zaher ABBAS &nbsp;
+                    <a
+                        href="https://www.linkedin.com/in/z83/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: 'none' }}
+                        aria-label="LinkedIn profile"
+                    >
+                        <IonIcon icon={logoLinkedin} style={{ verticalAlign: 'middle', marginRight: 6 }} />
+                    </a>
+                </IonTitle>
+            </IonToolbar>
+        </IonFooter>
     </IonPage>
 )
 }

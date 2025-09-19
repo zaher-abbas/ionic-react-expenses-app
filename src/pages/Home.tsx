@@ -131,7 +131,7 @@ const Home: React.FC = () => {
         <IonFooter>
             <IonToolbar className="ion-text-center">
                 <IonTitle size="small">
-                    © {new Date().getFullYear()} Developed by Zaher ABBAS &nbsp; &nbsp;
+                    © {new Date().getFullYear()} Developed by Zaher ABBAS &nbsp;
                     <a
                         href="https://www.linkedin.com/in/z83/"
                         target="_blank"
@@ -140,7 +140,6 @@ const Home: React.FC = () => {
                         aria-label="LinkedIn profile"
                     >
                         <IonIcon icon={logoLinkedin} style={{ verticalAlign: 'middle', marginRight: 6 }} />
-                        LinkedIn
                     </a>
                 </IonTitle>
             </IonToolbar>
