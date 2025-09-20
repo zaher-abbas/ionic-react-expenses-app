@@ -8,8 +8,9 @@ Add expenses with title, amount, category, and date, and view them in a clean, m
 - Add and list expenses (title, amount, category, date)
 - Sort expenses by category or by title
 - Delete an expense from the list
-- Responsive, mobile‑first UI with Ionic components
 - Client‑side data persistence (via Preferences local storage)
+- Modern Dark Mode Toggle button
+- Responsive, mobile‑first UI with Ionic components
 - Runs in the browser and can be deployed to iOS/Android with Capacitor
 - Unit and E2E testing setup (Vitest + Testing Library, Cypress)
 
