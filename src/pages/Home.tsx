@@ -16,6 +16,7 @@ import {add, arrowDown, arrowUp, logoLinkedin, moon, remove, sunny} from "ionico
 import {useEffect, useState} from "react";
 import {Expense, getExpenses, saveExpenses} from "../data/Storage";
 import {DarkMode} from "../hooks/useDarkMode";
+import AppFooter from "../components/App-Footer";
 
 
 
@@ -165,22 +166,7 @@ const Home: React.FC = () => {
               </IonFabButton>
           </IonFab>
       </IonContent>
-        <IonFooter>
-            <IonToolbar className="ion-text-center">
-                <IonTitle size="small">
-                    © {new Date().getFullYear()} Developed by Zaher ABBAS &nbsp;
-                    <a
-                        href="https://www.linkedin.com/in/z83/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ textDecoration: 'none' }}
-                        aria-label="LinkedIn profile"
-                    >
-                        <IonIcon icon={logoLinkedin} style={{ verticalAlign: 'middle', marginRight: 6 }} />
-                    </a>
-                </IonTitle>
-            </IonToolbar>
-        </IonFooter>
+        <AppFooter></AppFooter>
         <IonModal isOpen={confirmOpen} onDidDismiss={cancelDelete}>
             <div style={{ padding: 16 }}>
                 <h2>Delete this expense?</h2>

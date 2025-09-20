@@ -32,6 +32,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/darkmode.css';
 import AddExpense from "./pages/AddExpense";
 
 setupIonicReact();
