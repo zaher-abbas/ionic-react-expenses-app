@@ -1,6 +1,6 @@
 import React from "react";
 import {IonFooter, IonIcon, IonTitle, IonToolbar} from "@ionic/react";
-import {logoLinkedin} from "ionicons/icons";
+import {logoGithub, logoLinkedin} from "ionicons/icons";
 
 const AppFooter: React.FC = () => {
     return (
@@ -16,6 +16,15 @@ const AppFooter: React.FC = () => {
                         aria-label="LinkedIn profile"
                     >
                         <IonIcon icon={logoLinkedin} style={{ verticalAlign: 'middle', marginRight: 6 }} />
+                    </a>
+                    <a
+                        href="https://github.com/zaher-abbas"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: 'none' }}
+                        aria-label="LinkedIn profile"
+                    >
+                        <IonIcon icon={logoGithub} style={{ verticalAlign: 'middle', marginRight: 6 }} />
                     </a>
                 </IonTitle>
             </IonToolbar>
