@@ -27,18 +27,23 @@ const Home: React.FC = () => {
      const [sortedCatAscendent, setCatSortedAscendent] = useState<boolean>(false);
      const [sortedTitleAscendent, setSortedTitleAscendant] = useState<boolean>(false);
      const [expensesIndex, setExpensesIndex] = useState<number>(0);
-    const [confirmOpen, setConfirmOpen] = useState(false);
+     const [confirmOpen, setConfirmOpen] = useState(false);
+
+    function calculateTotal(expenses: Expense[]) {
+        let totalAmount: number = 0;
+        expenses.forEach(expense => {
+            const expenseAmount: number = parseFloat(expense.amount.toString());
+            totalAmount += expenseAmount;
+        })
+        setTotal(totalAmount);
+
+    }
 
     useEffect(() => {
         const fetchExpenses = async () => {
             const expenses = await getExpenses();
             setExpenses(expenses);
-            let totalAmount: number = 0;
-            expenses.forEach(expense => {
-                const expenseAmount: number = parseFloat(expense.amount.toString());
-                totalAmount += expenseAmount;
-            })
-            setTotal(totalAmount);
+            calculateTotal(expenses);
         };
         fetchExpenses();
     }, [location.pathname]
@@ -67,6 +72,7 @@ const Home: React.FC = () => {
         newExpenses.splice(expensesIndex, 1);
         setExpenses(newExpenses);
         await saveExpenses(newExpenses);
+        calculateTotal(newExpenses);
         setConfirmOpen(false);
 
     }
