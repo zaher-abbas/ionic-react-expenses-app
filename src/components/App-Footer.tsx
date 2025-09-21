@@ -14,6 +14,7 @@ const AppFooter: React.FC = () => {
                         rel="noopener noreferrer"
                         style={{ textDecoration: 'none' }}
                         aria-label="LinkedIn profile"
+                        className="ion-padding-horizontal"
                     >
                         <IonIcon icon={logoLinkedin} style={{ verticalAlign: 'middle', marginRight: 6 }} />
                     </a>
