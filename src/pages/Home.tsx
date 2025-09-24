@@ -114,7 +114,7 @@ const Home: React.FC = () => {
                   </IonCol>
               </IonRow>
           </IonGrid>
-          {expenses.length === 0 && <IonTitle className="ion-text-center">No expenses yet...</IonTitle>}
+          {expenses.length === 0 && <IonTitle color="warning" className="ion-text-center">No expenses yet...</IonTitle>}
           {expenses.length > 0 &&
               <IonTitle color="primary" className="ion-text-center">Expenses List</IonTitle>}
           {expenses.length > 0 &&
