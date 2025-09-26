@@ -4,7 +4,7 @@ import {
     IonCol,
     IonContent,
     IonFab,
-    IonFabButton, IonFooter, IonGrid,
+    IonFabButton, IonGrid,
     IonHeader,
     IonIcon, IonModal,
     IonPage, IonRow,
@@ -12,16 +12,16 @@ import {
     IonToolbar
 } from '@ionic/react';
 import './Home.css';
-import {add, arrowDown, arrowUp, logoLinkedin, moon, remove, sunny} from "ionicons/icons";
+import {add, arrowDown, arrowUp, moon, remove, sunny} from "ionicons/icons";
 import {useEffect, useState} from "react";
 import {Expense, getExpenses, saveExpenses} from "../data/Storage";
-import {DarkMode} from "../hooks/useDarkMode";
+import {useDarkMode} from "../hooks/useDarkMode";
 import AppFooter from "../components/App-Footer";
 
 
 
 const Home: React.FC = () => {
-     const {isDark, toggleDarkMode} = DarkMode();
+     const {isDark, toggleDarkMode} = useDarkMode();
      const [expenses, setExpenses] = useState<Expense[]>([]);
      const [total, setTotal] = useState<number>(0);
      const [sortedCatAscendent, setCatSortedAscendent] = useState<boolean>(false);

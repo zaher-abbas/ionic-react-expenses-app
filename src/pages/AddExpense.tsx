@@ -1,6 +1,6 @@
 import {
     IonButton, IonButtons, IonCol,
-    IonContent, IonFooter, IonGrid,
+    IonContent, IonGrid,
     IonHeader, IonIcon,
     IonInput,
     IonItem,
@@ -13,12 +13,12 @@ import {
 import React, { useState } from 'react';
 import { Expense, getExpenses, saveExpenses } from '../data/Storage';
 import {useHistory} from "react-router-dom";
-import {logoLinkedin, moon, sunny} from "ionicons/icons";
-import {DarkMode} from "../hooks/useDarkMode";
+import {moon, sunny} from "ionicons/icons";
+import {useDarkMode} from "../hooks/useDarkMode";
 import AppFooter from "../components/App-Footer";
 
 const AddExpense: React.FC = () => {
-    const {isDark, toggleDarkMode} = DarkMode();
+    const {isDark, toggleDarkMode} = useDarkMode();
     const history = useHistory();
     const CATEGORIES: string[] = ['Food', 'Transportation', 'Entertainment', 'Health', 'Education', 'Other'];
     const [title, setTitle] = useState<string>('');
