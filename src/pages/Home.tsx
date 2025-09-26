@@ -36,7 +36,6 @@ const Home: React.FC = () => {
             totalAmount += expenseAmount;
         })
         setTotal(totalAmount);
-
     }
 
     useEffect(() => {
@@ -55,7 +54,7 @@ const Home: React.FC = () => {
             return expenses.sort((a, b) => b.category.localeCompare(a.category));
         }
         else
-        setExpenses(prev => [...expenses].sort((a, b) => a.category.localeCompare(b.category)));
+        setExpenses(() => [...expenses].sort((a, b) => a.category.localeCompare(b.category)));
     }
 
     function sortByTitle() {
@@ -64,7 +63,7 @@ const Home: React.FC = () => {
             return expenses.sort((a, b) => b.title.localeCompare(a.title));
         }
         else
-            setExpenses(prev => [...expenses].sort((a, b) => a.title.localeCompare(b.title)));
+            setExpenses(() => [...expenses].sort((a, b) => a.title.localeCompare(b.title)));
     }
 
     async function deleteExpense() {
@@ -74,7 +73,6 @@ const Home: React.FC = () => {
         await saveExpenses(newExpenses);
         calculateTotal(newExpenses);
         setConfirmOpen(false);
-
     }
 
     function cancelDelete() {
@@ -116,56 +114,60 @@ const Home: React.FC = () => {
                   </IonCol>
               </IonRow>
           </IonGrid>
-          <IonGrid>
-              <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
-                  <IonCol>
-                  </IonCol>
-                  <IonCol className="header-with-icon">
-                      <span>Title</span>
-                      <IonButton
-                          fill="clear"
-                          size="small"
-                          aria-label="Sort by Title"
-                          onClick={sortByTitle}
-                      >
-                          <IonIcon icon={sortedTitleAscendent ? arrowDown : arrowUp}/>
-                      </IonButton>
-                  </IonCol>
-                  <IonCol >Amount</IonCol>
-                  <IonCol  className="header-with-icon">
-                      <span>Category</span>
-                      <IonButton
-                          fill="clear"
-                          size="small"
-                          aria-label="Sort by category"
-                          onClick={sortByCategory}
-                      >
-                          <IonIcon icon={sortedCatAscendent ? arrowDown : arrowUp} />
-                      </IonButton>
-                  </IonCol>
-                  <IonCol>Date</IonCol>
-              </IonRow>
-              {expenses.map((expense) => (
-                  <IonRow key={expense.id} className="ion-text-center ion-padding-vertical">
-                      <IonCol >
-                           <IonButton
-                          color="danger"
-                          size="small"
-                          aria-label="Delete Expense"
-                          onClick={() => {
-                              setExpensesIndex(expenses.indexOf(expense))
-                              setConfirmOpen(true)
-                          }}
-                      ><IonIcon icon={remove}></IonIcon>
-                           </IonButton>
+          {expenses.length === 0 && <IonTitle color="warning" className="ion-text-center">No expenses yet...</IonTitle>}
+          {expenses.length > 0 &&
+              <IonTitle color="primary" className="ion-text-center">Expenses List</IonTitle>}
+          {expenses.length > 0 &&
+               <IonGrid>
+                  <IonRow className="ion-text-bold ion-text-center ion-padding-vertical">
+                      <IonCol>
                       </IonCol>
-                      <IonCol >{expense.title}</IonCol>
-                      <IonCol >{formatEuro(expense.amount)}</IonCol>
-                      <IonCol >{expense.category}</IonCol>
-                      <IonCol >{expense.dateISO}</IonCol>
+                      <IonCol className="header-with-icon">
+                          <span>Title</span>
+                          <IonButton
+                              fill="clear"
+                              size="small"
+                              aria-label="Sort by Title"
+                              onClick={sortByTitle}
+                          >
+                              <IonIcon icon={sortedTitleAscendent ? arrowDown : arrowUp}/>
+                          </IonButton>
+                      </IonCol>
+                      <IonCol>Amount</IonCol>
+                      <IonCol className="header-with-icon">
+                          <span>Category</span>
+                          <IonButton
+                              fill="clear"
+                              size="small"
+                              aria-label="Sort by category"
+                              onClick={sortByCategory}
+                          >
+                              <IonIcon icon={sortedCatAscendent ? arrowDown : arrowUp}/>
+                          </IonButton>
+                      </IonCol>
+                      <IonCol>Date</IonCol>
                   </IonRow>
-              ))}
-          </IonGrid>
+                  {expenses.map((expense) => (
+                      <IonRow key={expense.id} className="ion-text-center ion-padding-vertical">
+                          <IonCol>
+                              <IonButton
+                                  color="danger"
+                                  size="small"
+                                  aria-label="Delete Expense"
+                                  onClick={() => {
+                                      setExpensesIndex(expenses.indexOf(expense));
+                                      setConfirmOpen(true);
+                                  }}
+                              ><IonIcon icon={remove}></IonIcon>
+                              </IonButton>
+                          </IonCol>
+                          <IonCol>{expense.title}</IonCol>
+                          <IonCol>{formatEuro(expense.amount)}</IonCol>
+                          <IonCol>{expense.category}</IonCol>
+                          <IonCol>{expense.dateISO}</IonCol>
+                      </IonRow>
+                  ))}
+              </IonGrid>}
           <IonFab slot="fixed" vertical="bottom" horizontal="center">
               <IonFabButton aria-label="Add" routerLink="/add">
                   <IonIcon icon={add} />
